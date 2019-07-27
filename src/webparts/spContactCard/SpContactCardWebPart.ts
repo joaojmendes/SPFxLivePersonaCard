@@ -1,16 +1,11 @@
 import * as React from 'react';
 import * as ReactDom from 'react-dom';
 import { Version, Log } from '@microsoft/sp-core-library';
-import {
-  BaseClientSideWebPart,
-  IPropertyPaneConfiguration,
-  PropertyPaneTextField
-} from '@microsoft/sp-webpart-base';
-
 import * as strings from 'SpContactCardWebPartStrings';
 import SPFxPeopleCard, { IPeopleCardProps } from './components/SPFXPeopleCard/SPFxPeopleCard';
 import { PersonaSize, PersonaInitialsColor } from 'office-ui-fabric-react';
-
+import { BaseClientSideWebPart } from "@microsoft/sp-webpart-base";
+import { IPropertyPaneConfiguration, PropertyPaneTextField } from "@microsoft/sp-property-pane";
 export interface ISpContactCardWebPartProps {
   description: string;
 }
@@ -24,7 +19,7 @@ export default class SpContactCardWebPart extends BaseClientSideWebPart<ISpConta
 
   public render(): void {
     const element: React.ReactElement<IPeopleCardProps> = React.createElement(
-      SPFxPeopleCard, {  
+      SPFxPeopleCard, {
         primaryText: this.context.pageContext.user.displayName,
         email: this.context.pageContext.user.email ? this.context.pageContext.user.email : this.context.pageContext.user.loginName,
         serviceScope: this.context.serviceScope,
